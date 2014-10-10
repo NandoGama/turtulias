@@ -10,5 +10,12 @@ feature 'Creating Projects' do
     fill_in 'Description', with: 'A web app for Lodge'
     click_button 'Create Project'
     expect(page).to have_content('Project has been created.')
+  
+  project = Project.where(name: "Lodge").first
+  expect(page.current_url).to eql(project_url(project))
+  title = "Lodge - Projects - turtulias"
+  expect(page).to have_title(title)
+  
   end
 end
+
